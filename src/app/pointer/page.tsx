@@ -8,7 +8,7 @@ import {
 } from "@coconut-xr/natuerlich/react";
 import { isXIntersection } from "@coconut-xr/xinteraction";
 import { Mesh, Vector3 } from "three";
-import { INFOS } from "../constants/info";
+import { INFOS, redBoxPosition } from "../constants/info";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],
@@ -73,7 +73,7 @@ export default function Page() {
               .add(e.point);
           }}
           ref={ref}
-          position={[0, 1, -0.5]}
+          position={[redBoxPosition.x, redBoxPosition.y, redBoxPosition.z]}
         >
           <boxGeometry />
           <meshBasicMaterial color="red" />

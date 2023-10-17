@@ -10,7 +10,7 @@ import { isXIntersection } from "@coconut-xr/xinteraction";
 import { Mesh, Vector3 } from "three";
 import { ThreeEvent } from "@react-three/fiber";
 import { LogDisplay } from "../LogDisplay";
-import { INFOS } from "../constants/info";
+import { INFOS, blueBoxPosition, redBoxPosition } from "../constants/info";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],
@@ -103,7 +103,7 @@ export default function Page() {
               onPointerUp={(e) => handlePointerUp(e, downState1)}
               onPointerMove={(e) => handlePointerMove(e, ref1, downState1)}
               ref={ref1}
-              position={[-0.2, 1, -0.5]}
+              position={[redBoxPosition.x, redBoxPosition.y, redBoxPosition.z]}
             >
               <boxGeometry />
               <meshBasicMaterial color="red" />
@@ -115,7 +115,11 @@ export default function Page() {
               onPointerUp={(e) => handlePointerUp(e, downState2)}
               onPointerMove={(e) => handlePointerMove(e, ref2, downState2)}
               ref={ref2}
-              position={[0.2, 1, -0.5]}
+              position={[
+                blueBoxPosition.x,
+                blueBoxPosition.y,
+                blueBoxPosition.z,
+              ]}
             >
               <boxGeometry />
               <meshBasicMaterial color="blue" />

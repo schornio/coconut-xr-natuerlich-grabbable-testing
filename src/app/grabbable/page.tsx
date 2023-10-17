@@ -10,7 +10,12 @@ import {
   NonImmersiveCamera,
   ImmersiveSessionOrigin,
 } from "@coconut-xr/natuerlich/react";
-import { INFOS } from "../constants/info";
+import {
+  INFOS,
+  POSITION_BOXES,
+  blueBoxPosition,
+  redBoxPosition,
+} from "../constants/info";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],
@@ -37,7 +42,9 @@ export default function Page() {
       <XRCanvas>
         {/* Works, but moves all elements inside of it equally */}
         <Grabbable>
-          <group position={[-0.5, 1.2, -0.5]}>
+          <group
+            position={[redBoxPosition.x, redBoxPosition.y, redBoxPosition.z]}
+          >
             <mesh scale={0.1}>
               <boxGeometry />
               <meshBasicMaterial color="red" />
@@ -56,7 +63,10 @@ export default function Page() {
         </group> */}
 
         <Grabbable>
-          <mesh scale={0.1} position={[0.2, 1, -0.5]}>
+          <mesh
+            scale={0.1}
+            position={[blueBoxPosition.x, blueBoxPosition.y, blueBoxPosition.z]}
+          >
             <boxGeometry />
             <meshBasicMaterial color="blue" />
           </mesh>

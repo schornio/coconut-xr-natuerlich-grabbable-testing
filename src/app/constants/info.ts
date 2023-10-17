@@ -26,3 +26,15 @@ export const INFOS: Info[] = [
     description: "Description",
   },
 ];
+
+export const redBoxPosition = {
+  x: -0.2,
+  y: 1,
+  z: -0.5,
+};
+
+export const blueBoxPosition = {
+  x: 0.2,
+  y: 1,
+  z: -0.5,
+};
