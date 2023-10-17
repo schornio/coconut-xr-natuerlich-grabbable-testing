@@ -10,7 +10,7 @@ import {
   NonImmersiveCamera,
   ImmersiveSessionOrigin,
 } from "@coconut-xr/natuerlich/react";
-import { INFOS, blueBoxPosition, redBoxPosition } from "../constants/info";
+import { INFOS, blueBoxPosition, redBoxPosition } from "../constants/appData";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],

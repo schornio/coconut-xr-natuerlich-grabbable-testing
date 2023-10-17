@@ -10,7 +10,7 @@ import { isXIntersection } from "@coconut-xr/xinteraction";
 import { Mesh, Vector3 } from "three";
 import { ThreeEvent } from "@react-three/fiber";
 import { LogDisplay } from "../LogDisplay";
-import { INFOS, blueBoxPosition, redBoxPosition } from "../constants/info";
+import { INFOS, blueBoxPosition, redBoxPosition } from "../constants/appData";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],

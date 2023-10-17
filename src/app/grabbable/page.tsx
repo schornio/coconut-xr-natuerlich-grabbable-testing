@@ -15,7 +15,7 @@ import {
   POSITION_BOXES,
   blueBoxPosition,
   redBoxPosition,
-} from "../constants/info";
+} from "../constants/appData";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],

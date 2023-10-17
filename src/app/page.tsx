@@ -1,5 +1,5 @@
 "use client";
-import { INFOS } from "./constants/info";
+import { INFOS } from "./constants/appData";
 
 export default function Home() {
   return (

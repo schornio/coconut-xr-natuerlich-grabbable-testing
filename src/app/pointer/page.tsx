@@ -8,7 +8,7 @@ import {
 } from "@coconut-xr/natuerlich/react";
 import { isXIntersection } from "@coconut-xr/xinteraction";
 import { Mesh, Vector3 } from "three";
-import { INFOS, redBoxPosition } from "../constants/info";
+import { INFOS, redBoxPosition } from "../constants/appData";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],
