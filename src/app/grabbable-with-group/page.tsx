@@ -5,15 +5,12 @@ import {
   Controllers,
   Grabbable,
 } from "@coconut-xr/natuerlich/defaults";
-import { useRef } from "react";
 import {
   useEnterXR,
   NonImmersiveCamera,
   ImmersiveSessionOrigin,
 } from "@coconut-xr/natuerlich/react";
-import { Mesh, Vector3 } from "three";
-import { CustomGrabbable } from "../CustomGrabbable";
-import { Text } from "@react-three/drei";
+import { INFOS } from "../constants/info";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],
@@ -25,7 +22,7 @@ export default function Page() {
   return (
     <div>
       <div className="page-header">
-        <h2>Grababble with group</h2>
+        <h2>{INFOS[3].title}</h2>
         <a href="/" className="a-link">
           Home
         </a>
@@ -46,9 +43,6 @@ export default function Page() {
                 <boxGeometry />
                 <meshBasicMaterial color="red" />
               </mesh>
-              <Text fontSize={0.02} position={[0, 0, 0.06]}>
-                Custom
-              </Text>
             </Grabbable>
 
             <Grabbable>

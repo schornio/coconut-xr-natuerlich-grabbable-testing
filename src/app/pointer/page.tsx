@@ -8,6 +8,7 @@ import {
 } from "@coconut-xr/natuerlich/react";
 import { isXIntersection } from "@coconut-xr/xinteraction";
 import { Mesh, Vector3 } from "three";
+import { INFOS } from "../constants/info";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],
@@ -25,7 +26,7 @@ export default function Page() {
   return (
     <div>
       <div className="page-header">
-        <h2>Basic</h2>
+        <h2>{INFOS[0].title}</h2>
         <a href="/" className="a-link">
           Home
         </a>

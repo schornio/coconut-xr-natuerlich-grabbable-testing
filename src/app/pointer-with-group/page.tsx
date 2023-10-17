@@ -1,6 +1,6 @@
 "use client";
 import { XRCanvas, Hands, Controllers } from "@coconut-xr/natuerlich/defaults";
-import { useRef } from "react";
+import { MutableRefObject, RefObject, useRef } from "react";
 import {
   useEnterXR,
   NonImmersiveCamera,
@@ -10,9 +10,15 @@ import { isXIntersection } from "@coconut-xr/xinteraction";
 import { Mesh, Vector3 } from "three";
 import { ThreeEvent } from "@react-three/fiber";
 import { LogDisplay } from "../LogDisplay";
+import { INFOS } from "../constants/info";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],
+};
+
+type DownStateType = {
+  pointerId: number;
+  pointToObjectOffset: Vector3;
 };
 
 export default function Page() {
@@ -21,17 +27,15 @@ export default function Page() {
   const ref1 = useRef<Mesh>(null);
   const ref2 = useRef<Mesh>(null);
 
-  const downState1 = useRef<{
-    pointerId: number;
-    pointToObjectOffset: Vector3;
-  }>();
+  const downState1 = useRef<DownStateType | null>(null);
 
-  const downState2 = useRef<{
-    pointerId: number;
-    pointToObjectOffset: Vector3;
-  }>();
+  const downState2 = useRef<DownStateType | null>(null);
 
-  const handlePointerDown = (e: ThreeEvent<PointerEvent>, ref, downState) => {
+  const handlePointerDown = (
+    e: ThreeEvent<PointerEvent>,
+    ref: RefObject<Mesh>,
+    downState: MutableRefObject<DownStateType | null>
+  ) => {
     if (
       ref.current != null &&
       downState.current == null &&
@@ -46,14 +50,21 @@ export default function Page() {
     }
   };
 
-  const handlePointerUp = (e: ThreeEvent<PointerEvent>, downState) => {
+  const handlePointerUp = (
+    e: ThreeEvent<PointerEvent>,
+    downState: MutableRefObject<DownStateType | null>
+  ) => {
     if (downState.current?.pointerId != e.pointerId) {
       return;
     }
-    downState.current = undefined;
+    downState.current = null;
   };
 
-  const handlePointerMove = (e: ThreeEvent<PointerEvent>, ref, downState) => {
+  const handlePointerMove = (
+    e: ThreeEvent<PointerEvent>,
+    ref: RefObject<Mesh>,
+    downState: MutableRefObject<DownStateType | null>
+  ) => {
     if (
       ref.current == null ||
       downState.current == null ||
@@ -67,12 +78,10 @@ export default function Page() {
       .add(e.point);
   };
 
-  // Problems start here: what if I have multiple objects I want to drag?
-  // Would I need to create a ref for each one?
   return (
     <div>
       <div className="page-header">
-        <h2>Basic with group</h2>
+        <h2>{INFOS[1].title}</h2>
         <a href="/" className="a-link">
           Home
         </a>
@@ -83,16 +92,14 @@ export default function Page() {
       </div>
 
       <XRCanvas>
+        <LogDisplay />
         {/* Applied position to parent  */}
         <group position={[0, 0.2, -0.1]}>
-          {/* Moch values to test Hierarchical positioning */}
+          {/* Mock values to test Hierarchical positioning */}
           <group position={[0.1, -0.3, 0.2]}>
             <mesh
               scale={0.1}
-              onPointerDown={(e) => {
-                console.log("Red box pointer down");
-                handlePointerDown(e, ref1, downState1);
-              }}
+              onPointerDown={(e) => handlePointerDown(e, ref1, downState1)}
               onPointerUp={(e) => handlePointerUp(e, downState1)}
               onPointerMove={(e) => handlePointerMove(e, ref1, downState1)}
               ref={ref1}
@@ -104,12 +111,10 @@ export default function Page() {
 
             <mesh
               scale={0.1}
-              onPointerDown={(e) => {
-                console.log("Blue box pointer down");
-                handlePointerDown(e, ref2, downState2);
-              }}
+              onPointerDown={(e) => handlePointerDown(e, ref2, downState2)}
               onPointerUp={(e) => handlePointerUp(e, downState2)}
               onPointerMove={(e) => handlePointerMove(e, ref2, downState2)}
+              ref={ref2}
               position={[0.2, 1, -0.5]}
             >
               <boxGeometry />

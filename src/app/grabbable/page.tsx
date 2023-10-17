@@ -10,6 +10,7 @@ import {
   NonImmersiveCamera,
   ImmersiveSessionOrigin,
 } from "@coconut-xr/natuerlich/react";
+import { INFOS } from "../constants/info";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],
@@ -18,11 +19,10 @@ const sessionOptions: XRSessionInit = {
 export default function Page() {
   const enterAR = useEnterXR("immersive-ar", sessionOptions);
 
-  // It works well
   return (
     <div>
       <div className="page-header">
-        <h2>Grabbable</h2>
+        <h2>{INFOS[2].title}</h2>
         <a href="/" className="a-link">
           Home
         </a>
@@ -35,6 +35,7 @@ export default function Page() {
       {/* ✅ Grabbable -> Group */}
       {/* ❌ Group -> Grabbable */}
       <XRCanvas>
+        {/* Works, but moves all elements inside of it equally */}
         <Grabbable>
           <group position={[-0.5, 1.2, -0.5]}>
             <mesh scale={0.1}>
@@ -43,6 +44,16 @@ export default function Page() {
             </mesh>
           </group>
         </Grabbable>
+
+        {/* Doesn't work in case we want to move individually, 'group' position influences the children */}
+        {/* <group position={[-0.5, 1.2, -0.5]}>
+          <Grabbable>
+            <mesh scale={0.1}>
+              <boxGeometry />
+              <meshBasicMaterial color="red" />
+            </mesh>
+          </Grabbable>
+        </group> */}
 
         <Grabbable>
           <mesh scale={0.1} position={[0.2, 1, -0.5]}>

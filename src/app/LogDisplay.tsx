@@ -1,4 +1,4 @@
-import { Text } from "@coconut-xr/koestlich";
+import { Text } from "@react-three/drei";
 import { useEffect, useState, useRef, useCallback } from "react";
 
 const MAX_LOGS = 10;
@@ -38,5 +38,9 @@ export function LogDisplay() {
     };
   }, [handleLog]);
 
-  return <Text>{logs.join("\n")}</Text>;
+  return (
+    <Text position={[0, 1, -2]} fontSize={0.08}>
+      {logs.join("\n")}
+    </Text>
+  );
 }
