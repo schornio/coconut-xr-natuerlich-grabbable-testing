@@ -12,6 +12,8 @@ import {
   ImmersiveSessionOrigin,
 } from "@coconut-xr/natuerlich/react";
 import { Mesh, Vector3 } from "three";
+import { CustomGrabbable } from "../CustomGrabbable";
+import { Text } from "@react-three/drei";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],
@@ -35,18 +37,22 @@ export default function Page() {
 
       <XRCanvas>
         {/* Applied position to parent  */}
-        <group position={[0, 0.2, -0.4]}>
-          {/* Moch values to test Hierarchical positioning */}
+        {/* Conflict child and parent positions */}
+        <group position={[0, 1, -0.4]}>
+          {/* Mock values to test Hierarchical positioning */}
           <group position={[0.1, -0.3, 0.2]}>
             <Grabbable>
-              <mesh scale={0.1} position={[0, 1, -0.5]}>
+              <mesh scale={0.1} position={[-0.2, 0, -0.5]}>
                 <boxGeometry />
                 <meshBasicMaterial color="red" />
               </mesh>
+              <Text fontSize={0.02} position={[0, 0, 0.06]}>
+                Custom
+              </Text>
             </Grabbable>
 
             <Grabbable>
-              <mesh scale={0.1} position={[0.2, 1, -0.5]}>
+              <mesh scale={0.1} position={[0.2, 0, -0.5]}>
                 <boxGeometry />
                 <meshBasicMaterial color="blue" />
               </mesh>

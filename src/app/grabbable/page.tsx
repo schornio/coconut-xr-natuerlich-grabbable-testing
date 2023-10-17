@@ -5,13 +5,11 @@ import {
   Controllers,
   Grabbable,
 } from "@coconut-xr/natuerlich/defaults";
-import { useRef } from "react";
 import {
   useEnterXR,
   NonImmersiveCamera,
   ImmersiveSessionOrigin,
 } from "@coconut-xr/natuerlich/react";
-import { Mesh, Vector3 } from "three";
 
 const sessionOptions: XRSessionInit = {
   requiredFeatures: ["local-floor", "hand-tracking"],
@@ -20,6 +18,7 @@ const sessionOptions: XRSessionInit = {
 export default function Page() {
   const enterAR = useEnterXR("immersive-ar", sessionOptions);
 
+  // It works well
   return (
     <div>
       <div className="page-header">
@@ -33,11 +32,22 @@ export default function Page() {
         </button>
       </div>
 
+      {/* ✅ Grabbable -> Group */}
+      {/* ❌ Group -> Grabbable */}
       <XRCanvas>
         <Grabbable>
-          <mesh scale={0.1} position={[0, 1, -0.5]}>
+          <group position={[-0.5, 1.2, -0.5]}>
+            <mesh scale={0.1}>
+              <boxGeometry />
+              <meshBasicMaterial color="red" />
+            </mesh>
+          </group>
+        </Grabbable>
+
+        <Grabbable>
+          <mesh scale={0.1} position={[0.2, 1, -0.5]}>
             <boxGeometry />
-            <meshBasicMaterial color="red" />
+            <meshBasicMaterial color="blue" />
           </mesh>
         </Grabbable>
         <NonImmersiveCamera />
