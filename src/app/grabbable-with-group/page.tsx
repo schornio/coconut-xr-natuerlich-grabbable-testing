@@ -23,6 +23,7 @@ export default function Page() {
     <div>
       <div className="page-header">
         <h2>{INFOS[3].title}</h2>
+        <p>{INFOS[3].description}</p>
         <a href="/" className="a-link">
           Home
         </a>
@@ -35,32 +36,18 @@ export default function Page() {
       <XRCanvas>
         {/* Applied position to parent  */}
         {/* Conflict child and parent positions */}
-        <group position={[0, 0.2, 0]}>
+        <group position={[0, 1, -0.5]}>
           {/* Mock values to test Hierarchical positioning */}
           <group position={[0.1, -0.3, 0]}>
             <Grabbable>
-              <mesh
-                scale={0.1}
-                position={[
-                  redBoxPosition.x,
-                  redBoxPosition.y,
-                  redBoxPosition.z,
-                ]}
-              >
+              <mesh scale={0.1} position={[redBoxPosition.x, 0, 0]}>
                 <boxGeometry />
                 <meshBasicMaterial color="red" />
               </mesh>
             </Grabbable>
 
             <Grabbable>
-              <mesh
-                scale={0.1}
-                position={[
-                  blueBoxPosition.x,
-                  blueBoxPosition.y,
-                  blueBoxPosition.z,
-                ]}
-              >
+              <mesh scale={0.1} position={[blueBoxPosition.x, 0, 0]}>
                 <boxGeometry />
                 <meshBasicMaterial color="blue" />
               </mesh>

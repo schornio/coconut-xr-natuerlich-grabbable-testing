@@ -125,7 +125,8 @@ a {
 .home-container h2,
 .home-container .a-link,
 .page-header h2,
-.page-header .a-link {
+.page-header .a-link,
+.page-header p {
   text-align: center;
   margin: 10px 0;
 }

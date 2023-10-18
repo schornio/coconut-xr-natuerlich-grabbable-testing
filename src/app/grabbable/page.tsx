@@ -23,6 +23,7 @@ export default function Page() {
     <div>
       <div className="page-header">
         <h2>{INFOS[2].title}</h2>
+        <p>{INFOS[2].description}</p>
         <a href="/" className="a-link">
           Home
         </a>
