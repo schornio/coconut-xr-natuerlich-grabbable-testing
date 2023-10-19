@@ -21,6 +21,13 @@ type DownStateType = {
   pointToObjectOffset: Vector3;
 };
 
+const scenes = ["scene1 ", "scene2 ", "scene3 "];
+
+function nextScene(scene: string) {
+  const index = scenes.indexOf(scene);
+  return scenes[(index + 1) % scenes.length];
+}
+
 export default function Page() {
   const enterAR = useEnterXR("immersive-ar", sessionOptions);
 
@@ -94,9 +101,8 @@ export default function Page() {
 
       <XRCanvas>
         <LogDisplay />
-        {/* Applied position to parent  */}
+
         <group position={[0, 0.2, -0.1]}>
-          {/* Mock values to test Hierarchical positioning */}
           <group position={[0.1, -0.3, 0.2]}>
             <mesh
               scale={0.1}

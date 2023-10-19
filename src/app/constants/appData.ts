@@ -6,28 +6,14 @@ type Info = {
 
 export const INFOS: Info[] = [
   {
-    path: "/pointer",
-    title: "Pointer",
-    description:
-      "Using onPointerUp, Down, and Move without transformations. Works as expected.",
+    path: "/grabbable-with-group-conditional-rendering",
+    title: "Grabbable with group conditional rendering",
+    description: "Testing",
   },
   {
-    path: "/pointer-with-group",
-    title: "Pointer with group",
-    description:
-      "Using onPointerUp, Down, and Move with transformations. Works as expected even in transformed group.",
-  },
-  {
-    path: "/grabbable",
-    title: "Grabbable",
-    description:
-      "Using Grabbable wrapping the Child. If Grabbable is in the outermost layer or it's not suffering transformations, it works as expected.",
-  },
-  {
-    path: "/grabbable-with-group",
-    title: "Grabbable with group",
-    description:
-      "Grabbable wrapper shows distortion of grabbing position in case the group is suffering transformations, such as position.",
+    path: "/grabbable-with-group-visible",
+    title: "Grabbable with group visible",
+    description: "Testing",
   },
 ];
 
