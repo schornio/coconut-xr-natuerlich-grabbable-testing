@@ -20,8 +20,6 @@ export default function Page() {
   const enterAR = useEnterXR("immersive-ar", sessionOptions);
   const currentScene = useSceneStore((state) => state.currentScene);
 
-  console.log("currentScene", currentScene);
-
   return (
     <div>
       <div className="page-header">
